@@ -1,0 +1,12 @@
+[Unit]
+Description=FleetScore Service for %i
+After=network.target
+
+[Service]
+WorkingDirectory=/usr/src/app
+Type=oneshot
+ExecStart=/usr/local/bin/npm run %i
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
