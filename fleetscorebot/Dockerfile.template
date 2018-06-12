@@ -1,0 +1,11 @@
+FROM resin/%%RESIN_MACHINE_NAME%%-node:9
+
+WORKDIR /usr/src/app
+ENV INITSYSTEM=on
+
+COPY package*.json ./
+RUN npm install
+
+COPY index.js ./
+
+CMD while : ; do echo "Waiting for the time to come ..."; sleep 900; done

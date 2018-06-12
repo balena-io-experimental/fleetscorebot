@@ -1,0 +1,12 @@
+version: '2'
+services:
+  fleetscorebot:
+    build: ./fleetscorebot
+    privileged: true
+    volumes:
+        - config:/usr/src/app/config
+        - logs:/usr/src/app/logs
+
+volumes:
+    config:
+    logs:
