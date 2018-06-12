@@ -14,7 +14,7 @@ const env = require("get-env")({
   devenv: "devenv"
 });
 
-const time_now = moment().format("YYYYMMDD_hhmmss");
+const time_now = moment().format("YYYYMMDD_HHmmss");
 const log_file = fs.createWriteStream(
   `logs/fleetscore_${env}_${time_now}.txt`,
   { flags: "a" }
