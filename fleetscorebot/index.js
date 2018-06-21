@@ -41,6 +41,17 @@ var help = function() {
   });
 };
 
+const getAllRetry = async n => {
+  for (let i = 0; i < n; i++) {
+    try {
+      return await resin.models.device.getAll();
+    } catch (err) {
+      const isLastAttempt = i + 1 === n;
+      if (isLastAttempt) throw err;
+    }
+  }
+};
+
 var getVersion = function(device) {
   var version = {};
   if (device.os_version) {
@@ -80,7 +91,7 @@ var getDevices = async function() {
   await resin.auth.loginWithToken(authToken);
   replaceToken();
 
-  var devices = await resin.models.device.getAll();
+  var devices = await getAllRetry(5);
   var before = moment()
     .subtract(28, "days")
     .startOf("day");
