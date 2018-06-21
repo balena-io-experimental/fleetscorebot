@@ -2,7 +2,7 @@
 Description=Run fleetscore for production every hour
 
 [Timer]
-OnCalendar=*-*-* *:00:00
+OnCalendar=*-*-* *:05:00
 Persistent=true
 
 [Install]
