@@ -41,10 +41,10 @@ var help = function() {
   });
 };
 
-const getAllRetry = async n => {
+const getAllRetry = async (n, options) => {
   for (let i = 0; i < n; i++) {
     try {
-      return await resin.models.device.getAll();
+      return await resin.models.device.getAll(options);
     } catch (err) {
       const isLastAttempt = i + 1 === n;
       if (isLastAttempt) throw err;
@@ -91,16 +91,21 @@ var getDevices = async function() {
   await resin.auth.loginWithToken(authToken);
   replaceToken();
 
-  var devices = await getAllRetry(5);
-  var before = moment()
+  const before = moment()
     .subtract(28, "days")
     .startOf("day");
-
-  filtered_devices = _.filter(devices, function(o) {
-    return (
-      (moment(o.last_connectivity_event) >= before || o.is_online) &&
-      o.supervisor_version !== null
-    );
+  const device_filter = {
+    filter: {
+      $or: [
+        { is_online: true },
+        { last_connectivity_event: { $ge: before.toISOString() } }
+      ]
+    },
+    select: ["supervisor_version", "os_version"]
+  };
+  const devices = await getAllRetry(5, device_filter);
+  var filtered_devices = _.filter(devices, function(o) {
+    return o.supervisor_version !== null;
   });
   var fleet = _.countBy(filtered_devices, getVersion);
   var fleet_list = [];
