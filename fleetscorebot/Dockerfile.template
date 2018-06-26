@@ -3,6 +3,10 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:9-slim
 WORKDIR /usr/src/app
 ENV INITSYSTEM=on
 
+RUN    apt-get update \
+    && apt-get install xz-utils \
+    && apt-get clean
+
 COPY package*.json ./
 RUN npm install
 
@@ -10,5 +14,10 @@ COPY index.js ./
 COPY fleetscore*.* /etc/systemd/system/
 RUN    systemctl enable fleetscore@staging.timer \
     && systemctl enable fleetscore@prod.timer
+
+# Add web server
+COPY http-server.service /etc/systemd/system/
+RUN    npm install http-server -g \
+    && systemctl enable http-server.service
 
 CMD while : ; do echo "Waiting for the time to come ..."; sleep 900; done
