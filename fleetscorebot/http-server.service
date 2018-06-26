@@ -1,0 +1,11 @@
+[Unit]
+Description=http server for the logs folder
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/http-server -p 8080 -a 0.0.0.0 /usr/src/app/logs
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

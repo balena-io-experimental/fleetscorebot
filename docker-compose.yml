@@ -6,6 +6,8 @@ services:
     volumes:
         - config:/usr/src/app/config
         - logs:/usr/src/app/logs
+    ports:
+        - "80:8080"
 
 volumes:
     config:
