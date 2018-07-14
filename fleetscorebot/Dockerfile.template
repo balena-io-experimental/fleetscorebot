@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 ENV INITSYSTEM=on
 
 RUN    apt-get update \
-    && apt-get install xz-utils \
+    && apt-get install git xz-utils \
     && apt-get clean
 
 COPY package*.json ./
