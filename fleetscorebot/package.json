@@ -12,13 +12,13 @@
   "author": "Gergely Imreh <imrehg@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "capitano": "^1.7.4",
+    "capitano": "^1.8.0",
     "config": "^1.30.0",
     "get-env": "^0.5.10",
     "jsonfile": "^4.0.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
-    "resin-sdk": "^8.2.1",
+    "resin-sdk": "^9.0.0",
     "resin-semver": "^1.2.2"
   },
   "devDependencies": {
