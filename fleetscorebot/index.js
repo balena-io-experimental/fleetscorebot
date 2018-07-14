@@ -112,7 +112,9 @@ var getDevices = async function() {
   _.forEach(fleet, function(value, key) {
     var vers = key.split("%");
     var combo = { os: vers[0], supervisor: vers[1], count: value };
-    fleet_list.push(combo);
+    if (combo.os !== "Unknown") {
+      fleet_list.push(combo);
+    }
   });
   var fleet_sorted_list = fleet_list
     .sort(function(a, b) {
