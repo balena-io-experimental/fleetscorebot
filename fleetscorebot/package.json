@@ -11,6 +11,10 @@
   },
   "author": "Gergely Imreh <imrehg@gmail.com>",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/resin-io-playground/fleetscorebot"
+  },
   "dependencies": {
     "capitano": "^1.8.0",
     "config": "^1.30.0",
