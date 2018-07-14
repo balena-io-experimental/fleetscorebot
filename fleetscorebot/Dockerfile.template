@@ -20,4 +20,4 @@ COPY http-server.service /etc/systemd/system/
 RUN    npm install http-server -g \
     && systemctl enable http-server.service
 
-CMD while : ; do echo "Waiting for the time to come ..."; sleep 900; done
+CMD while : ; do systemctl list-timers fleetscore*; sleep 900; done
