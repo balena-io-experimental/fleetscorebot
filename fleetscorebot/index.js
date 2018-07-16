@@ -60,7 +60,7 @@ var getVersion = function(device) {
   } else {
     version.os = "1.0.0-pre";
   }
-  version.supervisor = device.supervisor_version;
+  version.supervisor = semver.parse(device.supervisor_version).version;
   version.combined = `${version.os}%${version.supervisor}`;
   return version.combined;
 };
@@ -114,7 +114,11 @@ var getDevices = async function() {
     var combo = { os: vers[0], supervisor: vers[1], count: value };
     fleet_list.push(combo);
   });
-  var fleet_sorted_list = fleet_list
+  // Remove Unknown resinOS versions
+  var fleet_list_nounknown = _.filter(fleet_list, function(o) {
+    return o.os !== "Unknown";
+  });
+  var fleet_sorted_list = fleet_list_nounknown
     .sort(function(a, b) {
       if (a.os === b.os) {
         return semver.compare(a.supervisor, b.supervisor);
