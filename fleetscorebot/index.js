@@ -60,7 +60,7 @@ var getVersion = function(device) {
   } else {
     version.os = "1.0.0-pre";
   }
-  version.supervisor = device.supervisor_version;
+  version.supervisor = semver.parse(device.supervisor_version).version;
   version.combined = `${version.os}%${version.supervisor}`;
   return version.combined;
 };
