@@ -8,7 +8,7 @@ RUN    apt-get update \
     && apt-get clean
 
 COPY package*.json ./
-RUN npm install --only=production && npm cache verify
+RUN npm install --only=production
 
 COPY index.js ./
 COPY fleetscore*.* /etc/systemd/system/

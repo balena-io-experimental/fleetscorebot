@@ -9,7 +9,7 @@
     "staging": "NODE_ENV=staging node index.js get",
     "precommit": "pretty-quick --staged"
   },
-  "author": "Gergely Imreh <imrehg@gmail.com>",
+  "author": "Gergely Imreh <gergely@resin.io>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",

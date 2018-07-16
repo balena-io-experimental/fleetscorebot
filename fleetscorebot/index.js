@@ -112,11 +112,13 @@ var getDevices = async function() {
   _.forEach(fleet, function(value, key) {
     var vers = key.split("%");
     var combo = { os: vers[0], supervisor: vers[1], count: value };
-    if (combo.os !== "Unknown") {
-      fleet_list.push(combo);
-    }
+    fleet_list.push(combo);
   });
-  var fleet_sorted_list = fleet_list
+  // Remove Unknown resinOS versions
+  var fleet_list_nounknown = _.filter(fleet_list, function(o) {
+    return o.os !== "Unknown";
+  });
+  var fleet_sorted_list = fleet_list_nounknown
     .sort(function(a, b) {
       if (a.os === b.os) {
         return semver.compare(a.supervisor, b.supervisor);
