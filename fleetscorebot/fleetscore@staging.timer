@@ -3,7 +3,7 @@ Description=Run fleetscore for staging every hour
 
 [Timer]
 OnCalendar=*-*-* *:00:00
-Persistent=true
+AccuracySec=10s
 
 [Install]
 WantedBy=timers.target

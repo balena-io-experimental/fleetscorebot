@@ -3,7 +3,7 @@ Description=Run fleetscore for production every hour
 
 [Timer]
 OnCalendar=*-*-* *:05:00
-Persistent=true
+AccuracySec=10s
 
 [Install]
 WantedBy=timers.target
