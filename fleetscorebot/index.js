@@ -95,13 +95,13 @@ var getDevices = async function() {
     .subtract(28, "days")
     .startOf("day");
   const device_filter = {
-    filter: {
+    $filter: {
       $or: [
         { is_online: true },
         { last_connectivity_event: { $ge: before.toISOString() } }
       ]
     },
-    select: ["supervisor_version", "os_version"]
+    $select: ["supervisor_version", "os_version"]
   };
   const devices = await getAllRetry(5, device_filter);
   var filtered_devices = _.filter(devices, function(o) {
