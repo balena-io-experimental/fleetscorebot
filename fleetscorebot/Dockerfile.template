@@ -3,6 +3,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:10-slim
 WORKDIR /usr/src/app
 ENV INITSYSTEM=on
 
+RUN sed -i '/jessie-updates/{s/^/#/}' /etc/apt/sources.list
 RUN    apt-get update \
     && apt-get install git xz-utils \
     && apt-get clean

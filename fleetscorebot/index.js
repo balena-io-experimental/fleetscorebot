@@ -97,8 +97,8 @@ var getDevices = async function() {
   const device_filter = {
     $filter: {
       $or: [
-        { is_online: true },
-        { last_connectivity_event: { $ge: before.toISOString() } }
+        { is_connected_to_vpn: true },
+        { last_vpn_event: { $ge: before.toISOString() } }
       ]
     },
     $select: ["supervisor_version", "os_version"]
