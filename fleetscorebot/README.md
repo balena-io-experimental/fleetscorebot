@@ -1,19 +1,21 @@
 # Fleet Score Calculation helper
 
-This script does a count of resinOS version / supervisor version combos for all the devices visible for the user running it (defined by the API key required).
+This script does a count of balenaOS version / supervisor version combos for all the devices visible for the user running it (defined by the API key required).
 
 Usage:
 
-*   Create a `config/<ENVIRONMENT>.json` file where `ENVIRONMENT` is a name you choose, and points to an API endpoint and contains an API key for that endpoint
-*   Run script with `NODE_ENV=<ENVIRONMENT> node index.js get` to get a list of resin OS version / supervisor version / count list
-*   This script comes set up with shortcuts for the case when `<ENVIRONMENT>` is either `staging` or `production`, and can run the script with `npm start staging` or `npm start prod`, respectively.
+- Create a `config/<ENVIRONMENT>.json` file where `ENVIRONMENT` is a name you choose, and points to an API endpoint ("apiEndpoint") and contains an API key ("authToken") for that endpoint
+- Run script with `NODE_ENV=<ENVIRONMENT> node index.js get` to get a list of balenaOS version / supervisor version / count list
+- This script comes set up with shortcuts for the case when `<ENVIRONMENT>` is either `staging` or `production`, and can run the script with `npm start staging` or `npm start prod`, respectively.
 
 The output is a tab-delimited table such as:
+
 ```
 2.9.6   6.6.0   12
 2.7.8   6.5.9   4
 ...
 ```
+
 which can be imported e.g. into Google Sheets by copy-paste for further processing
 
 ## License

@@ -28,7 +28,7 @@ console.log = function(d) {
 };
 
 const authToken = config.get("authToken");
-const resin = require("resin-sdk")({
+const balena = require("balena-sdk")({
   apiUrl: config.get("apiEndpoint")
 });
 
@@ -44,7 +44,7 @@ var help = function() {
 const getAllRetry = async (n, options) => {
   for (let i = 0; i < n; i++) {
     try {
-      return await resin.models.device.getAll(options);
+      return await balena.models.device.getAll(options);
     } catch (err) {
       const isLastAttempt = i + 1 === n;
       if (isLastAttempt) throw err;
@@ -67,7 +67,7 @@ var getVersion = function(device) {
 
 var replaceToken = async function() {
   const file = `./config/${env}.json`;
-  resin.request
+  balena.request
     .send({
       url: `/user/v1/refresh-token`,
       baseUrl: config.get("apiEndpoint")
@@ -88,7 +88,7 @@ var replaceToken = async function() {
 };
 
 var getDevices = async function() {
-  await resin.auth.loginWithToken(authToken);
+  await balena.auth.loginWithToken(authToken);
   replaceToken();
 
   const before = moment()
@@ -114,7 +114,7 @@ var getDevices = async function() {
     var combo = { os: vers[0], supervisor: vers[1], count: value };
     fleet_list.push(combo);
   });
-  // Remove Unknown resinOS versions
+  // Remove Unknown balenaOS versions
   var fleet_list_nounknown = _.filter(fleet_list, function(o) {
     return o.os !== "Unknown";
   });

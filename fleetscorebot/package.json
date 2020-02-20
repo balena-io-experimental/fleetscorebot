@@ -16,13 +16,13 @@
     "url": "https://github.com/resin-io-playground/fleetscorebot"
   },
   "dependencies": {
+    "balena-sdk": "^12.25.0",
     "capitano": "^1.8.1",
     "config": "^2.0.1",
     "get-env": "^0.5.10",
     "jsonfile": "^5.0.0",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
-    "resin-sdk": "^10.0.9",
     "resin-semver": "^1.4.0"
   },
   "devDependencies": {
