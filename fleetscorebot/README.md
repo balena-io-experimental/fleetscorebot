@@ -6,7 +6,7 @@ Usage:
 
 - Create a `config/<ENVIRONMENT>.json` file where `ENVIRONMENT` is a name you choose, and points to an API endpoint ("apiEndpoint") and contains an API key ("authToken") for that endpoint
 - Run script with `NODE_ENV=<ENVIRONMENT> node index.js get` to get a list of balenaOS version / supervisor version / count list
-- This script comes set up with shortcuts for the case when `<ENVIRONMENT>` is either `staging` or `production`, and can run the script with `npm start staging` or `npm start prod`, respectively.
+- This script comes set up with shortcuts for the case when `<ENVIRONMENT>` is either `staging` or `production`, and can run the script with `npm run staging` or `npm run prod`, respectively.
 
 The output is a tab-delimited table such as:
 
